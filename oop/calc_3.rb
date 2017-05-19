@@ -5,7 +5,9 @@
 # any two classes.
 
 class SimpleCalculator
-
+   attr_accessor :first_number, :second_number
+end 
+  module Simple
   def add(first_number, second_number)
     first_number + second_number
   end
@@ -21,54 +23,19 @@ class SimpleCalculator
   def divide(first_number, second_number)
     first_number / second_number
   end
-
 end
 
-class FancyCalculator
 
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
+class FancyCalculator < SimpleCalculator
+      include Simple
+      attr_accessor :number
   def square_root(number)
     Math.sqrt(number)
   end
-
-end
-
-class WhizBangCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
   end
 
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
+class WhizBangCalculator < FancyCalculator 
+  include Simple
 
   def hypotenuse(first_number, second_number)
     Math.hypot(first_number, second_number)
@@ -83,4 +50,12 @@ class WhizBangCalculator
 end
 
 # Copy your driver code from the previous exercise and more below:
+calculator = SimpleCalculator.new
+fancy_calc = FancyCalculator.new
+whiz_calc = WhizBangCalculator.new
+
+p fancy_calc.square_root(22)
+p fancy_calc.add(8,2)
+p whiz_calc.add(10,2)
+p whiz_calc.exponent(5,20)
 
